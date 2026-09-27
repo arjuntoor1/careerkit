@@ -11,6 +11,11 @@ concise, professional entries that CVs are built from.
 First read `../../rules.md`, `../../reference/repo-format.md` (relative to this skill's
 base directory), and `voice.md`.
 
+If there's no `voice.md` (for example, they never imported a CV), ask how much they want to
+write themselves, using the three options in `repo-format.md`. Then offer to create
+`voice.md` with their answer. Its `## How I write` section can be filled in later, once
+there's enough of their own writing in the journal.
+
 ## 1. Pick the material
 
 - If they named a story or notes, use those.
