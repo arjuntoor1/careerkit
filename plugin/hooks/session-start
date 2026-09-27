@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# SessionStart hook: loads careerkit's rules, but only in a careerkit repo
+# (one with a .careerkit file at its root). Everywhere else it prints nothing.
+set -euo pipefail
+
+plugin_root="$(cd "$(dirname "$0")/.." && pwd)"
+dir="${CLAUDE_PROJECT_DIR:-$PWD}"
+
+if [ ! -f "$dir/.careerkit" ]; then
+  dir="$(git -C "$dir" rev-parse --show-toplevel 2>/dev/null || true)"
+  [ -n "$dir" ] && [ -f "$dir/.careerkit" ] || exit 0
+fi
+
+printf 'This is a careerkit career repo. The repo layout and file formats are in %s.\n\n' \
+  "$plugin_root/reference/repo-format.md"
+cat "$plugin_root/rules.md"
