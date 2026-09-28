@@ -1,0 +1,9 @@
+{
+  "name": "careerkit",
+  "description": "Keep your career record in git and add to it while you work: quick notes, stories drawn out in conversation, and curation into a record your CVs are built from.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Arjun Toor"
+  },
+  "keywords": ["career", "cv", "resume", "journal", "brag-document"]
+}
