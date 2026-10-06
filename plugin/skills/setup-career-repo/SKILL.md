@@ -33,7 +33,7 @@ private.
 
 ## 3. Create the layout
 
-Create only these files:
+Apart from `voice.md` in step 4, create only these files:
 
 - `.careerkit`, containing:
   ```
@@ -65,12 +65,20 @@ Create only these files:
 
 Don't create empty record files. They get created when there's something to put in them.
 
-## 4. Commit
+## 4. Set their voice
+
+Offer the voice quiz in `../../reference/voice-quiz.md`: a few quick questions about how
+they like to write, which every skill that drafts for them follows. If they'd rather skip
+it, `voice.md` gets written later by `import-sources` or `curate-into-experience`.
+
+If they take it, run it as that file describes and write `voice.md`.
+
+## 5. Commit
 
 Show what you created. When they're happy, commit with the message
 `Set up careerkit career repo`.
 
-## 5. Say what's next
+## 6. Say what's next
 
 In two or three sentences:
 - If they have a CV or LinkedIn profile, `import-sources` builds the record from it.

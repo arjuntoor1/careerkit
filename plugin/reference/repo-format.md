@@ -136,8 +136,9 @@ There's no header. It's a bullet list of general skills that don't belong to one
 
 ## voice.md
 
-Plain prose the person can edit. It's written by `import-sources` and read by every skill
-that writes.
+Plain prose the person can edit. It's written from the voice quiz
+(`reference/voice-quiz.md`), usually during `setup-career-repo`, and filled out by
+`import-sources` from their own writing. Every skill that writes reads it.
 
 ```markdown
 # Voice

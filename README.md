@@ -21,7 +21,7 @@ Then, in a new, private git repo, ask Claude to set up a career repo.
 
 | Skill | What it does |
 |---|---|
-| `setup-career-repo` | Sets up the current git repo as a career repo |
+| `setup-career-repo` | Sets up the current git repo as a career repo, and asks a few questions about how you like to write |
 | `import-sources` | Builds your record from your existing CV, LinkedIn profile or similar, redrafted in your voice |
 | `log-quick-note` | Jots down something from work in a few seconds |
 | `build-a-story` | A conversation that draws out the detail of a project or achievement |

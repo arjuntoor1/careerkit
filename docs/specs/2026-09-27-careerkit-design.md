@@ -113,14 +113,18 @@ versions.
 
 **`setup-career-repo`.** Sets up a repo that has no careerkit files yet. It writes the
 marker, `.claude/settings.json` and the empty folder layout. It checks the GitHub repo is
-private (or recommends it, if there's no remote) and says why.
+private (or recommends it, if there's no remote) and says why. It then offers the voice
+quiz, which writes `voice.md` from the user's choices.
 
 **`import-sources`.** Meant as a one-time bootstrap. If the record already has content,
 it says so and asks for confirmation before going ahead. When forced like this, it adds
 new material and asks about anything that overlaps the existing record, rather than
 merging on its own.
 - The user supplies the source files, which are copied into `sources/` unchanged.
-- It writes `voice.md` from the sources first, so the record can be drafted in that voice.
+- It deals with `voice.md` first, so the record can be drafted in that voice. If there's
+  no `voice.md`, it runs the voice quiz, marking the options closest to the sources. If
+  there is one, it asks about anything in the sources that contradicts it, and adds what
+  it notices that doesn't.
 - Each entry is redrafted from everything the sources say about it, to read better than
   the old CV. Nothing is invented: redrafting can cut, reorder, combine and reword, but
   every claim must be in a source. How far it redrafts follows `voice.md`.
@@ -171,10 +175,12 @@ as a project, a highlight or a description update.
 - Layout stays out of the record.
 - Don't edit files under `sources/`.
 
-**`voice.md`** (per user, plain prose they can edit). It's written by `import-sources`
-from their raw material. It covers sentence length, whether they write in the first
-person ("I lead…") or without it ("Led…"), the words they typically use, and British or
-American spelling. It also records how much they want to write themselves, from "draft
+**`voice.md`** (per user, plain prose they can edit). It's written from the voice quiz
+(`reference/voice-quiz.md`), usually during setup, and filled out by `import-sources` from
+their raw material. The quiz asks one question at a time, each option showing the same
+example achievement written that way: first person ("I lead…") or without it ("Led…"),
+length and detail, how impact is described, tone, British or American spelling, how
+technologies are named, and any words they like or avoid. It also records how much they want to write themselves, from "draft
 everything and I'll edit" to "prompt me, I'll write it". Every skill that writes reads
 it.
 

@@ -50,12 +50,18 @@ base directory).
 Do this before the record, because the record is drafted in this voice.
 
 - Read the person's own writing in the sources. Skip text they didn't write, such as
-  endorsements or recommendations.
-- Under `## How I write`, describe how they write: first person or implied subject,
-  sentence length, typical words and phrases, British or American spelling, how they
-  describe impact, and anything distinctive. Quote short examples.
-- Ask how much they want to write themselves, and record the answer under
-  `## How much I want to write` as one of the three options in `repo-format.md`.
+  endorsements or recommendations. Note how they write: first person or implied subject,
+  sentence length, how they describe impact, tone, spelling, how they name technologies,
+  typical words and phrases, and anything distinctive.
+- If there's no `voice.md`, run the quiz in `../../reference/voice-quiz.md`, marking the
+  options closest to the sources. Then add what you noticed that the quiz didn't cover,
+  such as typical phrasing, as further bullets under `## How I write` with short quotes.
+- If `voice.md` already exists (for example from `setup-career-repo`), it holds their
+  choices. Compare what you noticed with each bullet:
+  - Where the sources contradict a bullet (it says first person, the CV says "Built…"),
+    show both and ask which to keep. Update `voice.md` with the answer.
+  - Add what you noticed that doesn't contradict anything, as further bullets.
+  - If `## How much I want to write` is missing, ask it as in the quiz.
 
 ## 4. Draft the record
 
