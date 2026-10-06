@@ -113,19 +113,24 @@ versions.
 
 **`setup-career-repo`.** Sets up a repo that has no careerkit files yet. It writes the
 marker, `.claude/settings.json` and the empty folder layout. It checks the GitHub repo is
-private (or recommends it, if there's no remote) and says why.
+private (or recommends it, if there's no remote) and says why. It then offers the voice
+quiz, which writes `voice.md` from the user's choices.
 
 **`import-sources`.** Meant as a one-time bootstrap. If the record already has content,
 it says so and asks for confirmation before going ahead. When forced like this, it adds
 new material and asks about anything that overlaps the existing record, rather than
 merging on its own.
-- The user supplies the source files, which are copied into `sources/`.
-- The user states which source is the truth for what (e.g. "CV for everything at Panaseer
-  and the Senior Software Engineer role at BT; LinkedIn for the rest").
-- Each item comes from exactly one source and is copied word for word. Nothing is merged,
-  reworded or tidied.
-- Anything unclear is asked about, not guessed.
-- It also writes `voice.md` from the sources.
+- The user supplies the source files, which are copied into `sources/` unchanged.
+- It deals with `voice.md` first, so the record can be drafted in that voice. If there's
+  no `voice.md`, it runs the voice quiz, marking the options closest to the sources. If
+  there is one, it asks about anything in the sources that contradicts it, and adds what
+  it notices that doesn't.
+- Each entry is redrafted from everything the sources say about it, to read better than
+  the old CV. Nothing is invented: redrafting can cut, reorder, combine and reword, but
+  every claim must be in a source. How far it redrafts follows `voice.md`.
+- Where sources conflict (dates, titles, numbers), the user is asked. Anything else
+  unclear is asked about, not guessed.
+- The user reviews the whole drafted record, file by file, before it's committed.
 
 **`log-quick-note`.** Saves a short dated entry to `journal/YYYY-MM.md` in the user's
 words, with at most one follow-up question. Entries look like `## 2026-09-27 · Panaseer`
@@ -170,10 +175,12 @@ as a project, a highlight or a description update.
 - Layout stays out of the record.
 - Don't edit files under `sources/`.
 
-**`voice.md`** (per user, plain prose they can edit). It's written by `import-sources`
-from their raw material. It covers sentence length, whether they write in the first
-person ("I lead…") or without it ("Led…"), the words they typically use, and British or
-American spelling. It also records how much they want to write themselves, from "draft
+**`voice.md`** (per user, plain prose they can edit). It's written from the voice quiz
+(`reference/voice-quiz.md`), usually during setup, and filled out by `import-sources` from
+their raw material. The quiz asks one question at a time, each option showing the same
+example achievement written that way: first person ("I lead…") or without it ("Led…"),
+length and detail, how impact is described, tone, British or American spelling, how
+technologies are named, and any words they like or avoid. It also records how much they want to write themselves, from "draft
 everything and I'll edit" to "prompt me, I'll write it". Every skill that writes reads
 it.
 
@@ -194,9 +201,9 @@ There's no separate test harness in v1. The test is the author's own use:
 
 1. Run `setup-career-repo` on the author's data repo (`arjuntoor1/career`), replacing its current
    `me.yaml`, `styles/` and `cvs/`.
-2. Run `import-sources` with the latest CV and a LinkedIn export. The CV is the truth for
-   Panaseer and the Senior Software Engineer role at BT, and LinkedIn for the rest.
-   Imported text must match the chosen source word for word.
+2. Run `import-sources` with the latest CV and a LinkedIn export. Every claim in the
+   imported record can be traced to one of the sources, conflicts between them were asked
+   about, and the redrafted wording reads better than the old CV.
 3. Record one quick note and build one story, then curate it into the record.
 
 Anything that goes wrong is fixed in the plugin, not by hand-editing the data.

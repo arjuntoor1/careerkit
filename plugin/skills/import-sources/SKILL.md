@@ -1,12 +1,16 @@
 ---
 name: import-sources
-description: Use when someone wants to bring their existing CV, LinkedIn profile or similar documents into their careerkit repo, usually once to get started. Builds the record and voice.md from the sources, word for word, taking each item from exactly one source.
+description: Use when someone wants to bring their existing CV, LinkedIn profile or similar documents into their careerkit repo, usually once to get started. Builds the record and voice.md from the sources, redrafting the wording in their voice without inventing anything.
 ---
 
 # Import sources
 
 This builds the record from material the person already has, such as a CV, a LinkedIn
 profile or a portfolio page. After this the repo is the source of truth.
+
+The sources are kept as they are, but the record isn't a copy of them. Each entry is
+redrafted from what the sources say, to read better, in the person's voice. Nothing is
+invented.
 
 First read `../../rules.md` and `../../reference/repo-format.md` (relative to this skill's
 base directory).
@@ -31,25 +35,52 @@ base directory).
   apart, say so and ask for another format, such as a Word file or the text pasted in. Don't
   import scrambled text.
 
-## 2. Agree which source is the truth for what
+## 2. Map the sources
 
 - Summarise what each source covers (employers, roles, dates, education and so on), and
-  where they overlap or disagree.
-- Ask which source each overlapping part should come from. Suggest a default: the most
-  recent source for everything it covers. Confirm the answer back as a short list, e.g.
-  "CV: everything at Panaseer, and the Senior Software Engineer role at BT. LinkedIn:
-  everything else."
-- Nothing is merged. Each item, whether a role's description, a highlight list or a fact,
-  comes from exactly one source. If the source you didn't choose has a fact the chosen one
-  lacks, such as a location or an end date, ask whether to include it.
+  where they overlap.
+- Everything the sources say about a role, a qualification or anything else can go into
+  its entry, whichever source it's in.
+- List the conflicts, where sources disagree on a fact (dates, titles, numbers) or make
+  claims that can't both be true. Ask about each one. Don't pick a side yourself, even if
+  one source is newer.
 
-## 3. Write the record
+## 3. Write voice.md
+
+Do this before the record, because the record is drafted in this voice.
+
+- Read the person's own writing in the sources. Skip text they didn't write, such as
+  endorsements or recommendations. Note how they write: first person or implied subject,
+  sentence length, how they describe impact, tone, spelling, how they name technologies,
+  typical words and phrases, and anything distinctive.
+- If there's no `voice.md`, run the quiz in `../../reference/voice-quiz.md`, marking the
+  options closest to the sources. Then add what you noticed that the quiz didn't cover,
+  such as typical phrasing, as further bullets under `## How I write` with short quotes.
+- If `voice.md` already exists (for example from `setup-career-repo`), it holds their
+  choices. Compare what you noticed with each bullet:
+  - Where the sources contradict a bullet (it says first person, the CV says "Built…"),
+    show both and ask which to keep. Update `voice.md` with the answer.
+  - Add what you noticed that doesn't contradict anything, as further bullets.
+  - If `## How much I want to write` is missing, ask it as in the quiz.
+
+## 4. Draft the record
 
 - Create the record files as described in `repo-format.md`.
-- Copy descriptions, highlights, projects and achievements **word for word** from the
-  chosen source. Don't trim, reword, reorder or combine them. Repair only damage from
-  extracting the text (broken hyphenation, page numbers, repeated page headers), and tell
-  them what you repaired.
+- Redraft descriptions, highlights, projects and achievements from the sources. How far
+  depends on "How much I want to write":
+  - **Draft, but keep close to my own words.** Tidy lightly. Keep their sentences, and fix
+    only what reads badly or repeats.
+  - **Draft everything and I'll edit**, or **Prompt me and I'll write it.** Redraft fully.
+    "Prompt me" is about new material in `curate-into-experience`. Here the point is to
+    start from something better than the old CV.
+- Write in their voice. Match `voice.md` and reuse their phrasing where it's already good.
+- Follow the writing rules in `rules.md`: what they did and why it mattered, concisely, with
+  no inflated facts, stock phrases, inflated verbs, tidy groups of three, em-dash flourishes
+  or empty summarising lines.
+- **Nothing is invented.** Every claim, whether numbers, names, scope, their role or
+  outcomes, must be in a source. Redrafting can cut, reorder, combine and reword, but not
+  add. If a source is vague and the stronger version would be a guess, keep it vague and
+  add it to your list of questions.
 - Facts go in headers as plain fields. If a fact is missing or unclear, leave it out and
   add it to your list of questions.
 - For anything that might be private (date of birth, an account they no longer use, a
@@ -59,31 +90,24 @@ base directory).
 - If a source has something that fits no file (interests, volunteering, references), ask
   whether to keep it and where. Don't drop it silently.
 
-## 4. Write voice.md
+## 5. Review and commit
 
-- Read the person's own writing in the sources. Skip text they didn't write, such as
-  endorsements or recommendations.
-- Under `## How I write`, describe how they write: first person or implied subject,
-  sentence length, typical words and phrases, British or American spelling, how they
-  describe impact, and anything distinctive. Quote short examples.
-- Ask how much they want to write themselves, and record the answer under
-  `## How much I want to write` as one of the three options in `repo-format.md`.
-
-## 5. Check and commit
-
-- Go through what you created, file by file, and resolve your list of questions one at a
-  time.
-- Suggest they skim each experience file against its source.
-- When they're happy, commit with the message `Import sources: <names>`.
+- When the whole record is drafted, walk them through it file by file. For each file, point
+  out what to check: entries that combine more than one source, places where the wording
+  moved furthest from the source, and anything you cut.
+- Resolve your list of questions one at a time.
+- Make the changes they ask for. Nothing is committed until they're happy with every file.
+- Commit with the message `Import sources: <names>`.
 
 ## Adding to an existing record
 
 Follow the same steps, but first compare the new material with the existing record.
 
-- Things that aren't in the record yet, such as a new role or certification, are added as
-  above.
-- Anything that overlaps existing content, such as the same role worded differently,
-  becomes a question: keep what's there, or replace it with the new source's version.
-  Never merge the two yourself, and never keep both.
+- Things that aren't in the record yet, such as a new role or certification, are drafted
+  and added as above.
+- The existing record is their wording. Anything that overlaps it, such as the same role
+  described differently, becomes a question: keep what's there, replace it with a redraft
+  from the new source, or redraft combining both. Show the existing entry and the proposed
+  one side by side, and never keep both.
 - Don't rewrite `voice.md`. Offer to update it if the new source shows something new about
   how they write.
